@@ -1,9 +1,10 @@
 var id; // Saves artist's unique Spotify ID
 var artist;
-var topTracks; // Saves the top tracks for an artist (returns 10 at most)
+var topTracks; // Saves the top tracks (10) for an artist
 var artistUrl = 'https://api.spotify.com/v1/search?type=artist&query='
 var topUrl = 'https://api.spotify.com/v1/artists/'
-var sTrack // Saves the randomly selected track from the top tracks
+var answers = [];
+var userGuess;
 
 var app = angular.module('app', [])
 
@@ -25,22 +26,47 @@ var ctrl = app.controller('ctrl', function($scope, $http) {
 
         id = $scope.artists = response.artists.items[0].id
 
+        // Shows the user the artist their choice
+        // Uses the Spotify artist name for proper capitalization
+        artist = $scope.artist = response.artists.items[0].name
+        var choice = document.createTextNode("You'vs selected: " + artist + "! Good luck");
+        $('#choice').append(choice)        
+
           // Gets the top 10 songs for the artist in the US
           $http.get(topUrl + id + '/top-tracks?country=US').success(function(response) {
             topTracks = $scope.tracks = response.tracks
 
-            // Selects a random track from the top 10
-            sTrack = $scope.sTrack = topTracks[Math.floor(Math.random() * topTracks.length)];
-            console.log(sTrack)
+            // Randomizes order of top tracks
+            shuffle(topTracks);
+            console.log(topTracks)
 
-            // Shows the user the artist their choice
-            // Uses the Spotify artist name for proper capitalization
-            artist = sTrack.artists[0].name
-            var choice = document.createTextNode("You selected: " + artist + "! Good luck");
-            $('#choice').append(choice)
+            for (i = 0; i < topTracks.length; i++) {
+              answers[i] += topTracks[i].name
+            }
+
+            console.log(answers)
         })
       }
     })
+  }
+
+  // Function from http://bost.ocks.org/mike/shuffle/
+  function shuffle(array) {
+    var m = array.length, t, i;
+
+    // While there remain elements to shuffle…
+    while (m) {
+
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * m--);
+
+      // And swap it with the current element.
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+
+    return array;
   }
 
   // Given function to play or pause a song
