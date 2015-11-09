@@ -3,7 +3,6 @@ var artist;
 var topTracks; // Saves the top tracks (10) for an artist
 var artistUrl = 'https://api.spotify.com/v1/search?type=artist&query='
 var topUrl = 'https://api.spotify.com/v1/artists/'
-var answers = [];
 var userGuess;
 
 var app = angular.module('app', [])
@@ -12,9 +11,7 @@ var ctrl = app.controller('ctrl', function($scope, $http) {
   $scope.audioObject = {}
 
   $scope.getArtist = function() {
-    // Clears previous query
-    $('#song tr').remove();
-    $('#choice').empty();
+    clearGame();
 
     // Gets unique Spotify ID for the artist the user inputs
     $http.get(artistUrl + $scope.artist).success(function(response) {
@@ -29,7 +26,7 @@ var ctrl = app.controller('ctrl', function($scope, $http) {
         // Shows the user the artist their choice
         // Uses the Spotify artist name for proper capitalization
         artist = $scope.artist = response.artists.items[0].name
-        var choice = document.createTextNode("You'vs selected: " + artist + "! Good luck");
+        var choice = document.createTextNode("You've selected: " + artist + "! Good luck");
         $('#choice').append(choice)        
 
           // Gets the top 10 songs for the artist in the US
@@ -38,16 +35,15 @@ var ctrl = app.controller('ctrl', function($scope, $http) {
 
             // Randomizes order of top tracks
             shuffle(topTracks);
-            console.log(topTracks)
-
-            for (i = 0; i < topTracks.length; i++) {
-              answers[i] += topTracks[i].name
-            }
-
-            console.log(answers)
         })
       }
     })
+  }
+
+  // Clears/resets game
+  function clearGame() {
+    $('.row').empty();
+    $('#choice').empty();
   }
 
   // Function from http://bost.ocks.org/mike/shuffle/

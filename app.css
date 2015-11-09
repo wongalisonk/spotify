@@ -1,0 +1,102 @@
+body {
+  padding:10px;
+  background-image: url(img/background.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+h1 {
+	color: #F2F1EC;
+	text-align: center;
+	text-shadow:1px 1px 0 #000,
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	0px 1px 0 #000,
+	1px 0px 0 #000,
+	0px -1px 0 #000,
+	-1px 0px 0 #000,
+}
+
+h2 {
+	color: #F2F1EC;
+	text-align: center;
+	text-shadow:1px 1px 0 #000,
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	0px 1px 0 #000,
+	1px 0px 0 #000,
+	0px -1px 0 #000,
+	-1px 0px 0 #000,
+}
+
+p {
+	color: #F2F1EC;
+	text-align: center;
+}
+
+#artist {
+	color: #F2F1EC;
+}
+
+#artistError {
+	text-align: left;
+}
+
+#choice {
+	text-align: center;
+}
+
+.fa {
+	color: #F2F1EC;
+	font-size: 40px;
+}
+
+#choice {
+	font-size: 18px;
+}
+
+.btn-success {
+	background-color: #537D00;
+	border-color: #537D00;
+}
+
+span {
+	color: white;
+	font-size: 18px;
+	text-shadow:1px 1px 0 #000,
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	0px 1px 0 #000,
+	1px 0px 0 #000,
+	0px -1px 0 #000,
+	-1px 0px 0 #000,
+}
+
+.help-block {
+	text-align: center;
+}
+
+.col-xs-4 {
+	text-align: center;
+}
+
+#play {
+	text-align: right;
+}
+
+#name {
+	font-size: 16px;
+	text-align: left;
+	color: #F2F1EC;
+	text-shadow:1px 1px 0 #000,
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	0px 1px 0 #000,
+	1px 0px 0 #000,
+	0px -1px 0 #000,
+	-1px 0px 0 #000,
+}

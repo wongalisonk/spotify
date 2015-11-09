@@ -25,9 +25,12 @@
 	<!-- Initiate app -->
 	<div ng-app="app" ng-controller="ctrl">
 
-	<h1>Guess! Spotify</h1>
-	<h2>Can you guess the title of one of the top tracks by your favorite artist?</h2>
-	<p>This site uses data from the the Spotify API. Enter the name of an artist, and guess the name of the track!</p>
+	<div class="container">
+		<h1>Guess! Spotify</h1>
+		<h2>Can you guess the titles of the top 10 tracks by your favorite artist?</h2>
+		<p>This site uses data from the the Spotify API. Enter the name of an artist, and guess the names of the tracks!</p>
+	</div>
+
 		<!-- Form -->
 		<form class="container" id="songForm" name="songForm" novalidate>
 			<div class="form-group" ng-class="{'has-error':songForm.search.$touched && songForm.search.$invalid}">
@@ -35,27 +38,35 @@
 				<input id="search" name="search" placeholder="Enter the name of an artist" ng-minlength="2" ng-required="true" ng-model="artist" class="form-control" required></input>
 				<p id="artistError" ng-show="songForm.search.$error.minlength" class="help-block">Please enter the name of an artist</p>
 			</div>
-			<div class="form-group">
-				<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getArtist()" type="submit">Submit</button>
+			<div class="form-group center-block">
+				<button ng-disabled="songForm.search.$invalid" class="btn btn-success center-block" ng-click="getArtist(); answers=false" type="submit">Submit</button>
 			</div>
 			<p id="choice"></p>
 		</form>
 		
 		<!-- Results -->
-		<div class="container-fixed">
+		<div class="container">
 			<div class="help-block">
-				<!-- <span ng-show="tracks.length>0">Click to sample</span> -->
+				<span ng-show="tracks.length>0">Click to sample</span>
 				<span ng-show="currentSong && !audioObject.paused">(playing)</span>
 			</div>
-			<table id="song" class="table table-hover" ng-repeat="track in tracks">
-				<tbody>
-					<tr id="table">
-						<td ng-click="play(track.preview_url)"><i class="fa fa-play-circle"></i></td>
-						<td id="guess"><input type="text"></input></td>
-						<td id="answer">answer</td>
-					</tr>
-				</tbody>
-			<table>			
+
+			<div class="row" ng-repeat="track in tracks">
+				<div id="play" class="col-xs-4" ng-click="play(track.preview_url)">
+					<i class="fa fa-play-circle"></i>
+				</div>
+				<div class="col-xs-4">
+					<input class="form-control" id="guess" type="text"></input>
+				</div>
+				<div id="name" class="col-xs-4" ng-show="answers">
+					{{track.name}}
+				</div>
+			</div>
+			<hr ng-show="tracks.length>0">
+		</div>
+
+		<div>
+			<button ng-show="tracks.length>0" class="btn btn-success center-block" type="submit" ng-click="answers=true">Submit Answers</button><br><br>
 		</div>
 	</div>
 	</div>
