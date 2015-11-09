@@ -18,8 +18,11 @@ var ctrl = app.controller('ctrl', function($scope, $http) {
 
       // Checks to see if artist is valid
       if(response.artists.items == '') {
-        alert("Artist not found! Please double check to make sure the artist's name is spelled correctly.")
+        $('.post').hide()
+        alert("Artist not found! Please double check to make sure the artist's name is spelled correctly.");
       } else {
+
+        $('.post').show()
 
         id = $scope.artists = response.artists.items[0].id
 
@@ -32,7 +35,6 @@ var ctrl = app.controller('ctrl', function($scope, $http) {
           // Gets the top 10 songs for the artist in the US
           $http.get(topUrl + id + '/top-tracks?country=US').success(function(response) {
             topTracks = $scope.tracks = response.tracks
-
             // Randomizes order of top tracks
             shuffle(topTracks);
         })
@@ -42,6 +44,7 @@ var ctrl = app.controller('ctrl', function($scope, $http) {
 
   // Clears/resets game
   function clearGame() {
+    topTracks = [];
     $('.row').empty();
     $('#choice').empty();
   }

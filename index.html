@@ -47,8 +47,8 @@
 		<!-- Results -->
 		<div class="container">
 			<div class="help-block">
-				<span ng-show="tracks.length>0">Click to sample</span>
-				<span ng-show="currentSong && !audioObject.paused">(playing)</span>
+				<span class="post" ng-show="tracks.length>0">Click to sample</span>
+				<span class="post" ng-show="currentSong && !audioObject.paused">(playing)</span>
 			</div>
 
 			<div class="row" ng-repeat="track in tracks">
@@ -62,11 +62,11 @@
 					{{track.name}}
 				</div>
 			</div>
-			<hr ng-show="tracks.length>0">
+			<hr class="post" ng-show="tracks.length>0">
 		</div>
 
-		<div>
-			<button ng-show="tracks.length>0" class="btn btn-success center-block" type="submit" ng-click="answers=true">Submit Answers</button><br><br>
+		<div id="ans">
+			<button ng-show="tracks.length>0" class="btn btn-success post" type="submit" ng-click="answers=true">Submit Answers</button><br><br>
 		</div>
 	</div>
 	</div>
